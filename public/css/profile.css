@@ -1,0 +1,180 @@
+/* ========================================
+   PROFILE PAGE
+======================================== */
+
+.profile-section {
+    min-height: 75vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 60px 0;
+}
+
+.profile-card {
+    width: 100%;
+    max-width: 650px;
+
+    background: #171621;
+
+    border: 1px solid rgba(255, 255, 255, .11);
+
+    border-radius: 24px;
+
+    padding: clamp(25px, 5vw, 45px);
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.profile-header {
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+.profile-eyebrow {
+    color: #ff75ca;
+
+    font-weight: 600;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 10px;
+}
+
+.profile-title {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(34px, 5vw, 48px);
+
+    margin: 0 0 12px;
+}
+
+.profile-subtitle {
+    color: #aaa2b2;
+
+    line-height: 1.6;
+
+    margin: 0;
+}
+
+
+/* ========================================
+   DETAILS
+======================================== */
+
+.profile-details {
+    display: grid;
+
+    gap: 12px;
+
+    margin-bottom: 30px;
+}
+
+.profile-detail {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 17px 18px;
+
+    background: #09060d;
+
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    border-radius: 14px;
+}
+
+.profile-label {
+    color: #aaa2b2;
+
+    font-size: 14px;
+}
+
+.profile-value {
+    text-align: right;
+
+    word-break: break-word;
+}
+
+.profile-role {
+    color: #ff75ca;
+}
+
+
+/* ========================================
+   ACTIONS
+======================================== */
+
+.profile-actions {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+.profile-logout {
+    width: 100%;
+
+    text-align: center;
+
+    margin-top: 8px;
+
+    color: #aaa2b2;
+
+    text-decoration: none;
+
+    font-size: 14px;
+}
+
+.profile-logout:hover {
+    color: #ff75ca;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .profile-section {
+        padding: 35px 0;
+    }
+
+    .profile-detail {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 5px;
+    }
+
+    .profile-value {
+        text-align: left;
+    }
+
+    .profile-actions {
+        flex-direction: column;
+    }
+
+    .profile-actions a {
+        width: 100%;
+
+        box-sizing: border-box;
+
+        text-align: center;
+    }
+
+}

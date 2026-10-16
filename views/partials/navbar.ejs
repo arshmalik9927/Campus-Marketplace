@@ -1,0 +1,122 @@
+<nav class="navbar container" aria-label="Main navigation">
+
+    <a class="brand" href="/products">
+        <span class="brand-mark">
+            <i></i>
+            <i></i>
+            <i></i>
+        </span>
+
+        <span>CampusMarket</span>
+    </a>
+
+
+    <button
+        class="menu-toggle"
+        aria-expanded="false"
+        aria-controls="nav-links"
+        aria-label="Open menu"
+    >
+        <span></span>
+        <span></span>
+    </button>
+
+
+    <div class="nav-links" id="nav-links">
+
+        <a href="/products">
+            Browse
+        </a>
+
+
+        <% if (currUser && currUser.role === "seller") { %>
+
+            <div class="sell-nav">
+
+                <button
+                    class="sell-toggle"
+                    aria-expanded="false"
+                >
+                    Sell
+                </button>
+
+                <div class="sell-dropdown">
+
+                    <p>WHAT DO YOU WANT TO SELL?</p>
+
+                    <a href="/products/new">
+                        <b>◇</b>
+
+                        <span>
+                            <strong>
+                                Sell Product
+                            </strong>
+
+                            <small>
+                                Books, gadgets, notes
+                            </small>
+                        </span>
+                    </a>
+
+                    <a
+                        class="create-listing"
+                        href="/products/new"
+                    >
+                        ＋ Create New Listing
+                    </a>
+
+                </div>
+
+            </div>
+
+        <% } %>
+
+
+        <a href="/products/category/Books">
+            Books
+        </a>
+
+        <a href="/products/category/Notes">
+            Notes
+        </a>
+
+        <a href="/cart">
+            Cart
+        </a>
+
+
+        <% if (currUser) { %>
+
+            <span class="nav-user">
+                Hi, <%= currUser.username %>
+            </span>
+
+            <a
+                class="nav-login"
+                href="/logout"
+            >
+                Logout
+            </a>
+
+        <% } else { %>
+
+            <a
+                class="nav-login"
+                href="/login"
+            >
+                Log in
+            </a>
+
+            <a
+                class="nav-cta"
+                href="/signup"
+            >
+                Get started
+                <span>→</span>
+            </a>
+
+        <% } %>
+
+    </div>
+
+</nav>

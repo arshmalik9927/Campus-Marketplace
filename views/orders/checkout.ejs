@@ -1,0 +1,171 @@
+<% layout("layouts/boilerplate") -%>
+
+<div class="container">
+
+    <section class="order-section">
+
+        <div class="order-header">
+            <p class="order-eyebrow">CHECKOUT</p>
+
+            <h1 class="order-title">
+                Complete Your Order
+            </h1>
+
+            <p class="order-subtitle">
+                Enter your delivery details and review your order before placing it.
+            </p>
+        </div>
+
+
+        <div class="checkout-layout">
+
+            <!-- Delivery Details -->
+            <div class="checkout-card">
+
+                <h2 class="checkout-card-title">
+                    Delivery Details
+                </h2>
+
+                <form
+                    action="/orders"
+                    method="POST"
+                    class="order-form"
+                >
+
+                    <div class="order-form-group">
+
+                        <label
+                            for="deliveryAddress"
+                            class="order-form-label"
+                        >
+                            Delivery Address
+                        </label>
+
+                        <textarea
+                            id="deliveryAddress"
+                            name="deliveryAddress"
+                            rows="5"
+                            placeholder="Enter your complete delivery address"
+                            required
+                            class="order-form-textarea"
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="order-form-actions">
+
+                        <button
+                            type="submit"
+                            class="btn-primary"
+                        >
+                            Place Order
+                        </button>
+
+                        <a
+                            href="/cart"
+                            class="btn-secondary"
+                        >
+                            Back to Cart
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <!-- Order Summary -->
+            <div class="checkout-summary">
+
+                <div class="checkout-summary-header">
+
+                    <h2>
+                        Order Summary
+                    </h2>
+
+                    <span>
+                        <%= cart.items.length %> item<%= cart.items.length !== 1 ? "s" : "" %>
+                    </span>
+
+                </div>
+
+
+                <div class="checkout-items">
+
+                    <% cart.items.forEach(item => { %>
+
+                        <div class="checkout-item">
+
+                            <div class="checkout-item-image">
+
+                                <% if (item.product.image && item.product.image.url) { %>
+
+                                    <img
+                                        src="<%= item.product.image.url %>"
+                                        alt="<%= item.product.title %>"
+                                    >
+
+                                <% } else { %>
+
+                                    <div class="checkout-no-image">
+                                        No Image
+                                    </div>
+
+                                <% } %>
+
+                            </div>
+
+
+                            <div class="checkout-item-info">
+
+                                <h3>
+                                    <%= item.product.title %>
+                                </h3>
+
+                                <p>
+                                    <%= item.product.category %>
+                                </p>
+
+                                <span>
+                                    Qty: <%= item.quantity %>
+                                </span>
+
+                            </div>
+
+
+                            <strong class="checkout-item-price">
+
+                                ₹<%= (
+                                    item.product.price * item.quantity
+                                ).toLocaleString("en-IN") %>
+
+                            </strong>
+
+                        </div>
+
+                    <% }) %>
+
+                </div>
+
+
+                <div class="checkout-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong>
+                        ₹<%= total.toLocaleString("en-IN") %>
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>

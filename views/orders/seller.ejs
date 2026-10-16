@@ -1,0 +1,267 @@
+<% layout("layouts/boilerplate") -%>
+
+    <div class="container">
+
+        <section class="order-section">
+
+            <!-- Header -->
+            <div class="order-header">
+
+                <p class="order-eyebrow">
+                    SELLER DASHBOARD
+                </p>
+
+                <h1 class="order-title">
+                    Customer Orders
+                </h1>
+
+                <p class="order-subtitle">
+                    View orders containing products listed by you.
+                </p>
+
+            </div>
+
+
+            <% if (orders && orders.length> 0) { %>
+
+                <div class="orders-list">
+
+                    <% orders.forEach(order=> { %>
+
+                        <article class="order-list-card">
+
+                            <!-- Order Header -->
+                            <div class="order-list-header">
+
+                                <div>
+
+                                    <p class="order-info-label">
+                                        ORDER ID
+                                    </p>
+
+                                    <h2 class="order-list-id">
+                                        #<%= order._id %>
+                                    </h2>
+
+                                </div>
+
+
+                                <span class="order-status">
+                                    <%= order.status %>
+                                </span>
+
+                            </div>
+
+
+                            <!-- Buyer -->
+                            <div class="seller-order-buyer">
+
+                                <p class="order-info-label">
+                                    CUSTOMER
+                                </p>
+
+                                <strong>
+                                    <%= order.buyer?.username || "Student" %>
+                                </strong>
+
+                                <% if (order.buyer?.email) { %>
+
+                                    <span>
+                                        <%= order.buyer.email %>
+                                    </span>
+
+                                    <% } %>
+
+                            </div>
+
+
+                            <!-- Order Details -->
+                            <div class="order-list-details">
+
+                                <div class="order-list-detail">
+
+                                    <span>
+                                        Order Date
+                                    </span>
+
+                                    <strong>
+                                        <%= new Date(order.createdAt).toLocaleDateString("en-IN") %>
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="order-list-detail">
+
+                                    <span>
+                                        Your Items
+                                    </span>
+
+                                    <strong>
+                                        <%= order.items.length %>
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="order-list-detail">
+
+                                    <span>
+                                        Your Sales
+                                    </span>
+
+                                    <strong>
+                                        ₹<%= order.items.reduce( (sum, item)=>
+                                            sum + (item.price * item.quantity),
+                                            0
+                                            ).toLocaleString("en-IN") %>
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Seller Items -->
+                            <div class="order-list-items">
+
+                                <% order.items.forEach(item=> { %>
+
+                                    <div class="order-list-item">
+
+                                        <div class="order-list-item-info">
+
+                                            <h3>
+                                                <%= item.title %>
+                                            </h3>
+
+                                            <p>
+                                                Quantity:
+                                                <%= item.quantity %>
+                                            </p>
+
+                                        </div>
+
+
+                                        <strong>
+                                            ₹<%= ( item.price * item.quantity ).toLocaleString("en-IN") %>
+                                        </strong>
+
+                                    </div>
+
+                                    <% }) %>
+
+                            </div>
+
+
+                            <!-- Delivery Address -->
+                            <div class="seller-order-address">
+
+                                <p class="order-info-label">
+                                    DELIVERY ADDRESS
+                                </p>
+
+                                <p>
+                                    <%= order.deliveryAddress %>
+                                </p>
+
+                            </div>
+
+
+                            <!-- Footer -->
+
+                            <div class="order-list-footer">
+
+                                <div class="seller-status-section">
+
+                                    <span class="seller-status-label">
+                                        Update Order Status
+                                    </span>
+
+                                    <form action="/orders/seller/<%= order._id %>/status?_method=PUT" method="POST"
+                                        class="seller-status-form">
+
+                                        <select name="status" class="seller-status-select">
+
+                                            <option value="Pending" <%=order.status==="Pending" ? "selected" : "" %>
+                                                >
+                                                Pending
+                                            </option>
+
+                                            <option value="Confirmed" <%=order.status==="Confirmed" ? "selected" : "" %>
+                                                >
+                                                Confirmed
+                                            </option>
+
+                                            <option value="Completed" <%=order.status==="Completed" ? "selected" : "" %>
+                                                >
+                                                Completed
+                                            </option>
+
+                                            <option value="Cancelled" <%=order.status==="Cancelled" ? "selected" : "" %>
+                                                >
+                                                Cancelled
+                                            </option>
+
+                                        </select>
+
+
+                                        <button type="submit" class="btn-primary seller-status-btn">
+                                            Update Status
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+
+                                <a href="/orders/<%= order._id %>" class="btn-secondary">
+                                    View Order →
+                                </a>
+
+                            </div>
+                        </article>
+
+                        <% }) %>
+
+                </div>
+
+
+                <% } else { %>
+
+                    <!-- Empty State -->
+                    <div class="orders-empty">
+
+                        <div class="orders-empty-icon">
+                            📦
+                        </div>
+
+                        <h2>
+                            No Customer Orders
+                        </h2>
+
+                        <p>
+                            You don't have any orders for your products yet.
+                            Once a student buys your product, the order will appear here.
+                        </p>
+
+                        <a href="/products/new" class="btn-primary">
+                            List a Product
+                        </a>
+
+                    </div>
+
+                    <% } %>
+
+
+                        <div class="order-bottom-action">
+
+                            <a href="/products" class="btn-secondary">
+                                ← Back to Marketplace
+                            </a>
+
+                        </div>
+
+        </section>
+
+    </div>

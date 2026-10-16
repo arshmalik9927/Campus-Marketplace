@@ -1,0 +1,415 @@
+<% layout("layouts/boilerplate") -%>
+
+<div class="container">
+
+    <!-- =========================
+         PRODUCT DETAILS
+    ========================== -->
+
+    <section class="product-details">
+
+        <!-- Product Image -->
+        <div class="product-details-image">
+
+            <% if (product.image && product.image.url) { %>
+
+                <img
+                    src="<%= product.image.url %>"
+                    alt="<%= product.title %>"
+                    class="product-details-img"
+                >
+
+            <% } else { %>
+
+                <div class="product-details-no-image">
+                    <span>📦</span>
+                    <p>No Image Available</p>
+                </div>
+
+            <% } %>
+
+        </div>
+
+
+        <!-- Product Information -->
+        <div class="product-details-info">
+
+            <span class="product-card-category">
+                <%= product.category %>
+            </span>
+
+            <h1 class="product-details-title">
+                <%= product.title %>
+            </h1>
+
+            <p class="product-details-description">
+                <%= product.description %>
+            </p>
+
+            <div class="product-details-price">
+                ₹<%= Number(product.price).toLocaleString("en-IN") %>
+            </div>
+
+
+            <!-- Seller -->
+            <div class="product-seller-box">
+
+                <div class="product-seller-label">
+                    SOLD BY
+                </div>
+
+                <div class="product-seller-name">
+                    👤 <%= product.seller ? product.seller.username : "Unknown Seller" %>
+                </div>
+
+            </div>
+
+
+            <!-- Product Actions -->
+            <div class="product-actions">
+
+                <% if (currUser) { %>
+
+                    <% if (
+                        currUser.role === "seller" &&
+                        product.seller &&
+                        product.seller._id.equals(currUser._id)
+                    ) { %>
+
+                        <a
+                            href="/products/<%= product._id %>/edit"
+                            class="btn-primary"
+                        >
+                            Edit Product
+                        </a>
+
+                    <% } else { %>
+
+                        <form
+                            action="/cart/<%= product._id %>"
+                            method="POST"
+                        >
+                            <button
+                                type="submit"
+                                class="btn-primary"
+                            >
+                                🛒 Add to Cart
+                            </button>
+                        </form>
+
+                    <% } %>
+
+                <% } else { %>
+
+                    <a
+                        href="/login"
+                        class="btn-primary"
+                    >
+                        Login to Buy
+                    </a>
+
+                <% } %>
+
+                <a
+                    href="/products"
+                    class="btn-secondary"
+                >
+                    ← Back to Products
+                </a>
+
+            </div>
+
+
+            <!-- Seller Actions -->
+            <% if (
+                currUser &&
+                currUser.role === "seller" &&
+                product.seller &&
+                product.seller._id.equals(currUser._id)
+            ) { %>
+
+                <div class="product-seller-actions">
+
+                    <form
+                        action="/products/<%= product._id %>?_method=DELETE"
+                        method="POST"
+                    >
+                        <button
+                            type="submit"
+                            class="product-delete-btn"
+                            onclick="return confirm('Are you sure you want to delete this product?')"
+                        >
+                            Delete Product
+                        </button>
+                    </form>
+
+                </div>
+
+            <% } %>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         REVIEWS SECTION
+    ========================== -->
+
+    <section class="product-reviews">
+
+        <div class="section-heading">
+
+            <p class="section-eyebrow">
+                STUDENT REVIEWS
+            </p>
+
+            <h2>
+                What students say
+            </h2>
+
+            <p>
+                See what other students think about this product.
+            </p>
+
+        </div>
+
+
+        <!-- Existing Reviews -->
+
+        <% if (product.reviews && product.reviews.length > 0) { %>
+
+            <div class="reviews-grid">
+
+                <% product.reviews.forEach(review => { %>
+
+                    <article class="review-card">
+
+                        <div class="review-card-header">
+
+                            <div class="review-author">
+
+                                <div class="review-avatar">
+                                    <%= review.author
+                                        ? review.author.username.charAt(0).toUpperCase()
+                                        : "U" %>
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        <%= review.author
+                                            ? review.author.username
+                                            : "Anonymous" %>
+                                    </strong>
+
+                                    <small>
+                                        <%= new Date(review.createdAt).toLocaleDateString("en-IN") %>
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Rating -->
+
+                            <div class="review-rating">
+
+                                <% for (let i = 1; i <= 5; i++) { %>
+
+                                    <% if (i <= review.rating) { %>
+                                        <span class="review-star active">★</span>
+                                    <% } else { %>
+                                        <span class="review-star">☆</span>
+                                    <% } %>
+
+                                <% } %>
+
+                            </div>
+
+                        </div>
+
+
+                        <p class="review-comment">
+                            <%= review.comment %>
+                        </p>
+
+
+                        <!-- Delete Own Review -->
+
+                        <% if (
+                            currUser &&
+                            review.author &&
+                            review.author._id.equals(currUser._id)
+                        ) { %>
+
+                            <div class="review-actions">
+
+                                <form
+                                    action="/products/<%= product._id %>/reviews/<%= review._id %>?_method=DELETE"
+                                    method="POST"
+                                >
+
+                                    <button
+                                        type="submit"
+                                        class="review-delete-btn"
+                                        onclick="return confirm('Delete this review?')"
+                                    >
+                                        Delete
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        <% } %>
+
+                    </article>
+
+                <% }) %>
+
+            </div>
+
+        <% } else { %>
+
+            <div class="review-empty">
+
+                <div class="review-empty-icon">
+                    ⭐
+                </div>
+
+                <h3>
+                    No reviews yet
+                </h3>
+
+                <p>
+                    Be the first student to review this product.
+                </p>
+
+            </div>
+
+        <% } %>
+
+
+        <!-- =========================
+             ADD REVIEW
+        ========================== -->
+
+        <% if (currUser) { %>
+
+            <div class="review-form-card">
+
+                <div class="review-form-header">
+
+                    <p class="section-eyebrow">
+                        SHARE YOUR EXPERIENCE
+                    </p>
+
+                    <h3>
+                        Add a review
+                    </h3>
+
+                    <p>
+                        Tell other students what you think about this product.
+                    </p>
+
+                </div>
+
+
+                <form
+                    action="/products/<%= product._id %>/reviews"
+                    method="POST"
+                    class="review-form"
+                >
+
+                    <!-- Rating -->
+
+                    <div class="review-form-group">
+
+                        <label
+                            for="rating"
+                            class="review-form-label"
+                        >
+                            Rating
+                        </label>
+
+                        <select
+                            id="rating"
+                            name="review[rating]"
+                            required
+                            class="review-form-input"
+                        >
+                            <option value="">Select rating</option>
+                            <option value="5">★★★★★ — Excellent</option>
+                            <option value="4">★★★★☆ — Very Good</option>
+                            <option value="3">★★★☆☆ — Good</option>
+                            <option value="2">★★☆☆☆ — Average</option>
+                            <option value="1">★☆☆☆☆ — Poor</option>
+                        </select>
+
+                    </div>
+
+
+                    <!-- Comment -->
+
+                    <div class="review-form-group">
+
+                        <label
+                            for="comment"
+                            class="review-form-label"
+                        >
+                            Your Review
+                        </label>
+
+                        <textarea
+                            id="comment"
+                            name="review[comment]"
+                            rows="5"
+                            placeholder="Write your experience with this product..."
+                            required
+                            minlength="3"
+                            maxlength="500"
+                            class="review-form-input review-form-textarea"
+                        ></textarea>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn-primary review-submit-btn"
+                    >
+                        ⭐ Submit Review
+                    </button>
+
+                </form>
+
+            </div>
+
+        <% } else { %>
+
+            <div class="review-login-card">
+
+                <h3>
+                    Want to review this product?
+                </h3>
+
+                <p>
+                    Login to share your experience with other students.
+                </p>
+
+                <a
+                    href="/login"
+                    class="btn-primary"
+                >
+                    Login to Review
+                </a>
+
+            </div>
+
+        <% } %>
+
+    </section>
+
+</div>

@@ -1,0 +1,108 @@
+<% layout("layouts/boilerplate") -%>
+
+    <div class="container">
+
+        <section class="profile-section">
+
+            <div class="profile-card">
+
+                <!-- Header -->
+                <div class="profile-header">
+
+                    <p class="profile-eyebrow">
+                        MY ACCOUNT
+                    </p>
+
+                    <h1 class="profile-title">
+                        Welcome, <%= currUser.username %>
+                    </h1>
+
+                    <p class="profile-subtitle">
+                        Manage your CampusMarket account.
+                    </p>
+
+                </div>
+
+
+                <!-- User Details -->
+                <div class="profile-details">
+
+                    <div class="profile-detail">
+
+                        <span class="profile-label">
+                            Username
+                        </span>
+
+                        <strong class="profile-value">
+                            <%= currUser.username %>
+                        </strong>
+
+                    </div>
+
+
+                    <div class="profile-detail">
+
+                        <span class="profile-label">
+                            Email
+                        </span>
+
+                        <strong class="profile-value">
+                            <%= currUser.email %>
+                        </strong>
+
+                    </div>
+
+
+                    <div class="profile-detail">
+
+                        <span class="profile-label">
+                            Account Type
+                        </span>
+
+                        <strong class="profile-value profile-role">
+                            <%= currUser.role==="seller" ? "Seller" : "Buyer" %>
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Actions -->
+                <div class="profile-actions">
+
+                    <a href="/products" class="btn-primary">
+                        Browse Products
+                    </a>
+
+                    <a href="/cart" class="btn-secondary">
+                        My Cart
+                    </a>
+
+                    <a href="/orders" class="btn-secondary">
+                        My Orders
+                    </a>
+
+                    <% if (currUser.role==="seller" ) { %>
+
+                        <a href="/products/new" class="btn-secondary">
+                            Sell Product
+                        </a>
+
+                        <a href="/orders/seller" class="btn-secondary">
+                            Customer Orders
+                        </a>
+
+                        <% } %>
+
+                            <a href="/logout" class="profile-logout">
+                                Logout
+                            </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>

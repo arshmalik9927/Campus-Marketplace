@@ -1,0 +1,111 @@
+<% layout("layouts/boilerplate") -%>
+
+<div class="container">
+
+    <section class="auth-section">
+
+        <div class="auth-card login-card">
+
+            <!-- Heading -->
+            <div class="auth-header">
+
+                <p class="auth-eyebrow">
+                    WELCOME BACK
+                </p>
+
+                <h1 class="auth-title">
+                    Login
+                </h1>
+
+                <p class="auth-subtitle">
+                    Login to buy, sell and connect with students.
+                </p>
+
+            </div>
+
+
+            <!-- Login Form -->
+            <form
+                action="/login"
+                method="POST"
+                class="auth-form"
+            >
+
+                <!-- Username -->
+                <div class="auth-form-group">
+
+                    <label
+                        for="username"
+                        class="auth-label"
+                    >
+                        Username
+                    </label>
+
+                    <input
+                        id="username"
+                        type="text"
+                        name="username"
+                        placeholder="Enter your username"
+                        autocomplete="username"
+                        required
+                        class="auth-input"
+                    >
+
+                </div>
+
+
+                <!-- Password -->
+                <div class="auth-form-group">
+
+                    <label
+                        for="password"
+                        class="auth-label"
+                    >
+                        Password
+                    </label>
+
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                        class="auth-input"
+                    >
+
+                </div>
+
+
+                <!-- Submit -->
+                <button
+                    type="submit"
+                    class="btn-primary auth-submit"
+                >
+                    Login
+                </button>
+
+            </form>
+
+
+            <!-- Signup -->
+            <div class="auth-switch">
+
+                <span>
+                    Don't have an account?
+                </span>
+
+                <a
+                    href="/signup"
+                    class="auth-switch-link"
+                >
+                    Create account
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>

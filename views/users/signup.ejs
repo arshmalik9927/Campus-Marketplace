@@ -1,0 +1,209 @@
+<% layout("layouts/boilerplate") -%>
+
+<div class="container">
+
+    <section class="auth-section">
+
+        <div class="auth-card">
+
+            <!-- Heading -->
+            <div class="auth-header">
+
+                <p class="auth-eyebrow">
+                    JOIN CAMPUSMARKET
+                </p>
+
+                <h1 class="auth-title">
+                    Create Account
+                </h1>
+
+                <p class="auth-subtitle">
+                    Create your account and start using the student marketplace.
+                </p>
+
+            </div>
+
+
+            <!-- Signup Form -->
+            <form
+                action="/signup"
+                method="POST"
+                class="auth-form"
+            >
+
+                <!-- Username -->
+                <div class="auth-form-group">
+
+                    <label
+                        for="username"
+                        class="auth-label"
+                    >
+                        Username
+                    </label>
+
+                    <input
+                        id="username"
+                        type="text"
+                        name="username"
+                        placeholder="Choose a username"
+                        autocomplete="username"
+                        required
+                        minlength="3"
+                        maxlength="30"
+                        class="auth-input"
+                    >
+
+                </div>
+
+
+                <!-- Email -->
+                <div class="auth-form-group">
+
+                    <label
+                        for="email"
+                        class="auth-label"
+                    >
+                        Email
+                    </label>
+
+                    <input
+                        id="email"
+                        type="email"
+                        name="email"
+                        placeholder="student@example.com"
+                        autocomplete="email"
+                        required
+                        class="auth-input"
+                    >
+
+                </div>
+
+
+                <!-- Password -->
+                <div class="auth-form-group">
+
+                    <label
+                        for="password"
+                        class="auth-label"
+                    >
+                        Password
+                    </label>
+
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        placeholder="Create a password"
+                        autocomplete="new-password"
+                        required
+                        minlength="6"
+                        class="auth-input"
+                    >
+
+                </div>
+
+
+                <!-- Account Type -->
+                <div class="auth-role-section">
+
+                    <label class="auth-role-label">
+                        Account Type
+                    </label>
+
+                    <div class="auth-role-grid">
+
+                        <!-- Buyer -->
+                        <label class="auth-role-option">
+
+                            <input
+                                type="radio"
+                                name="role"
+                                value="buyer"
+                                checked
+                                class="auth-role-input"
+                            >
+
+                            <div class="auth-role-card">
+
+                                <div class="auth-role-icon">
+                                    🛒
+                                </div>
+
+                                <strong>
+                                    Buyer
+                                </strong>
+
+                                <p class="auth-role-description">
+                                    Browse and buy products
+                                </p>
+
+                            </div>
+
+                        </label>
+
+
+                        <!-- Seller -->
+                        <label class="auth-role-option">
+
+                            <input
+                                type="radio"
+                                name="role"
+                                value="seller"
+                                class="auth-role-input"
+                            >
+
+                            <div class="auth-role-card">
+
+                                <div class="auth-role-icon">
+                                    🏪
+                                </div>
+
+                                <strong>
+                                    Seller
+                                </strong>
+
+                                <p class="auth-role-description">
+                                    Sell your products
+                                </p>
+
+                            </div>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Submit -->
+                <button
+                    type="submit"
+                    class="btn-primary auth-submit"
+                >
+                    Create Account
+                </button>
+
+            </form>
+
+
+            <!-- Login Link -->
+            <div class="auth-switch">
+
+                <span>
+                    Already have an account?
+                </span>
+
+                <a
+                    href="/login"
+                    class="auth-switch-link"
+                >
+                    Login
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>

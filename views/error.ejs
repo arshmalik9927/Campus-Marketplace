@@ -1,0 +1,44 @@
+<% layout("layouts/boilerplate") -%>
+
+<div class="container">
+
+    <section class="error-section">
+
+        <div class="error-card">
+
+            <p class="error-eyebrow">
+                SOMETHING WENT WRONG
+            </p>
+
+            <h1 class="error-title">
+                <%= typeof statusCode !== "undefined" ? statusCode : 500 %>
+            </h1>
+
+            <h2 class="error-heading">
+                <%= typeof message !== "undefined"
+                    ? message
+                    : "Something went wrong." %>
+            </h2>
+
+            <p class="error-text">
+                Sorry, we couldn't complete your request.
+                Please try again or return to the marketplace.
+            </p>
+
+            <div class="error-actions">
+
+                <a href="/products" class="btn-primary">
+                    Back to Marketplace
+                </a>
+
+                <a href="/" class="btn-secondary">
+                    Go Home
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>

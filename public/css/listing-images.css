@@ -1,0 +1,192 @@
+/* =========================================
+   CAMPUSMARKET - LISTING IMAGES
+========================================= */
+
+.market-image,
+.product-card-image-link,
+.product-details-image {
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+
+/* =========================
+   TRENDING / MARKET IMAGE
+========================= */
+
+.market-image {
+    position: relative;
+    aspect-ratio: 4 / 3;
+}
+
+.market-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+/* =========================
+   PRODUCT CARD IMAGE
+========================= */
+
+.product-card-image-link {
+    display: block;
+    aspect-ratio: 4 / 3;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.product-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-card-image {
+    transform: scale(1.04);
+}
+
+.product-card-no-image {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    color: var(--muted, #888);
+    font-size: 0.85rem;
+}
+
+
+/* =========================
+   PRODUCT DETAILS IMAGE
+========================= */
+
+.product-details-image {
+    position: relative;
+    min-height: 480px;
+    border-radius: 20px;
+}
+
+.product-details-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 480px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.product-details-no-image {
+    display: grid;
+    place-items: center;
+    align-content: center;
+    min-height: 480px;
+    padding: 30px;
+    text-align: center;
+}
+
+.product-details-no-image h2 {
+    margin: 0 0 8px;
+    font-family: "Space Grotesk", sans-serif;
+}
+
+.product-details-no-image p {
+    margin: 0;
+    color: var(--muted, #888);
+}
+
+
+/* =========================
+   EDIT PRODUCT IMAGE
+========================= */
+
+.product-edit-image {
+    display: block;
+    width: min(100%, 320px);
+    max-height: 300px;
+    margin-top: 12px;
+    border-radius: 14px;
+    object-fit: cover;
+}
+
+
+/* =========================
+   CART IMAGE
+========================= */
+
+.cart-item-image {
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.cart-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* =========================
+   CHECKOUT IMAGE
+========================= */
+
+.checkout-item-image {
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.checkout-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* =========================
+   IMAGE HOVER
+========================= */
+
+.market-card img,
+.product-card img {
+    transition: transform 0.3s ease;
+}
+
+.market-card:hover img,
+.product-card:hover img {
+    transform: scale(1.04);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .product-details-image {
+        min-height: 320px;
+    }
+
+    .product-details-image img {
+        min-height: 320px;
+    }
+
+    .product-details-no-image {
+        min-height: 320px;
+    }
+
+    .cart-item-image {
+        width: 65px;
+        height: 65px;
+    }
+
+    .product-card-no-image {
+        min-height: 180px;
+    }
+
+}

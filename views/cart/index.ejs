@@ -1,0 +1,214 @@
+<% layout("layouts/boilerplate") -%>
+
+    <div class="container">
+
+        <section class="cart-section">
+
+            <!-- Cart Header -->
+            <div class="cart-header">
+
+                <p class="cart-eyebrow">
+                    YOUR SHOPPING BAG
+                </p>
+
+                <h1 class="cart-title">
+                    Your Cart
+                </h1>
+
+            </div>
+
+
+            <% if (!cart.items || cart.items.length===0) { %>
+
+                <!-- Empty Cart -->
+                <div class="cart-empty">
+
+                    <div class="cart-empty-icon">
+                        🛒
+                    </div>
+
+                    <h2 class="cart-empty-title">
+                        Your cart is empty
+                    </h2>
+
+                    <p class="cart-empty-text">
+                        Find something useful for your college life.
+                    </p>
+
+                    <a href="/products" class="btn-primary">
+                        Browse Products
+                    </a>
+
+                </div>
+
+
+                <% } else { %>
+
+
+                    <!-- Cart Layout -->
+                    <div class="cart-layout">
+
+                        <!-- Cart Items -->
+                        <div class="cart-items">
+
+                            <% cart.items.forEach(item=> { %>
+
+                                <% if (item.product) { %>
+
+                                    <div class="cart-item">
+
+                                        <!-- Product Image -->
+                                        <a href="/products/<%= item.product._id %>" class="cart-image-link">
+
+                                            <% if ( item.product.image && item.product.image.url ) { %>
+
+                                                <img src="<%= item.product.image.url %>" alt="<%= item.product.title %>"
+                                                    class="cart-image">
+
+                                                <% } else { %>
+
+                                                    <div class="cart-no-image">
+                                                        No Image
+                                                    </div>
+
+                                                    <% } %>
+
+                                        </a>
+
+
+                                        <!-- Product Info -->
+                                        <div class="cart-product-info">
+
+                                            <p class="cart-category">
+                                                <%= item.product.category %>
+                                            </p>
+
+
+                                            <a href="/products/<%= item.product._id %>" class="cart-product-link">
+
+                                                <h3 class="cart-product-title">
+                                                    <%= item.product.title %>
+                                                </h3>
+
+                                            </a>
+
+
+                                            <p class="cart-product-price">
+                                                ₹<%= item.product.price.toLocaleString("en-IN") %>
+                                            </p>
+
+
+                                            <!-- Quantity -->
+                                            <form action="/cart/<%= item.product._id %>?_method=PUT" method="POST"
+                                                class="cart-quantity-form">
+
+                                                <label for="quantity-<%= item.product._id %>"
+                                                    class="cart-quantity-label">
+                                                    Quantity
+                                                </label>
+
+                                                <input id="quantity-<%= item.product._id %>" type="number"
+                                                    name="quantity" value="<%= item.quantity %>" min="1" required
+                                                    class="cart-quantity-input">
+
+                                                <button type="submit" class="btn-secondary cart-update-btn">
+                                                    Update
+                                                </button>
+
+                                            </form>
+
+
+                                            <!-- Remove -->
+                                            <form action="/cart/<%= item.product._id %>?_method=DELETE" method="POST"
+                                                class="cart-remove-form">
+
+                                                <button type="submit" class="cart-remove-btn">
+                                                    Remove
+                                                </button>
+
+                                            </form>
+
+                                        </div>
+
+                                    </div>
+
+                                    <% } %>
+
+                                        <% }) %>
+
+                        </div>
+
+
+                        <!-- Order Summary -->
+                        <div class="cart-summary">
+
+                            <h2 class="cart-summary-title">
+                                Order Summary
+                            </h2>
+
+
+                            <div class="cart-summary-row">
+
+                                <span>
+                                    Items
+                                </span>
+
+                                <span>
+                                    <%= cart.items.reduce( (total, item)=> total + item.quantity,
+                                        0
+                                        ) %>
+                                </span>
+
+                            </div>
+
+
+                            <div class="cart-summary-total">
+
+                                <span>
+                                    Total
+                                </span>
+
+                                <span>
+                                    ₹<%= cart.items.reduce( (total, item)=> {
+                                        if (!item.product) return total;
+
+                                        return total +
+                                        item.product.price * item.quantity;
+                                        },
+                                        0
+                                        ).toLocaleString("en-IN") %>
+                                </span>
+
+                            </div>
+
+
+                            <!-- Checkout -->
+                            <a href="/orders/checkout" class="btn-primary cart-checkout-btn">
+                                Proceed to Checkout
+                            </a>
+
+
+                            <!-- Clear Cart -->
+                            <form action="/cart?_method=DELETE" method="POST" class="cart-clear-form">
+
+                                <button type="submit" class="btn-secondary cart-clear-btn">
+                                    Clear Cart
+                                </button>
+
+                            </form>
+
+
+                            <!-- Continue Shopping -->
+                            <a href="/products" class="cart-continue">
+                                ← Continue Shopping
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <% } %>
+
+        </section>
+
+    </div>

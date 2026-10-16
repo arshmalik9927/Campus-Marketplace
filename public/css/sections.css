@@ -1,0 +1,145 @@
+/* =========================================
+   CAMPUSMARKET - CURRENT HOME SECTIONS
+========================================= */
+
+.how-it-works {
+    position: relative;
+    padding: 90px 0 100px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    background: #14131d;
+}
+
+.how-it-works .section-heading {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.how-it-works .section-heading > div {
+    width: 100%;
+}
+
+.how-it-works .section-eyebrow {
+    margin-bottom: 10px;
+}
+
+.how-it-works h2 {
+    margin: 0;
+    color: #837b98;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    letter-spacing: -0.04em;
+}
+
+
+/* =========================================
+   STEPS
+========================================= */
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    margin-top: 42px;
+    text-align: left;
+}
+
+.step-card {
+    position: relative;
+    min-height: 190px;
+    padding: 28px 25px;
+    margin: 15px;
+    border: 1px solid #a9a6c4;
+    border-radius: 16px;
+    background: #171521;
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(168, 85, 247, 0.4);
+}
+
+.step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 28px;
+    border-radius: 12px;
+    background: #281c48;
+    color: #9a63ff;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.step-card:nth-child(2) .step-number {
+    background: #401a39;
+    color: #ed4ba7;
+}
+
+.step-card:nth-child(3) .step-number {
+    background: #113e32;
+    color: #32cb92;
+}
+
+.step-card h3 {
+    margin: 0 0 10px;
+    color: #837b98;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.05rem;
+}
+
+.step-card p {
+    margin: 0;
+    color: #837b98;
+    font-size: 0.82rem;
+    line-height: 1.65;
+}
+
+
+/* =========================================
+   HOME SECTION SPACING
+========================================= */
+
+.section-block + .section-block {
+    padding-top: 35px;
+}
+
+.product-section {
+    padding: 75px 0;
+}
+
+.product-section + .how-it-works {
+    margin-top: 0;
+    border-radius: 20px;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .how-it-works {
+        padding: 65px 0 75px;
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-top: 32px;
+    }
+
+    .step-card {
+        min-height: auto;
+        padding: 23px 20px;
+    }
+
+}

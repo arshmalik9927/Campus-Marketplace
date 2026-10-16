@@ -1,0 +1,249 @@
+/* ========================================
+   AUTH PAGES
+   Login + Signup
+======================================== */
+
+.auth-section {
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 520px;
+    box-sizing: border-box;
+
+    background: #171621;
+    border: 1px solid rgba(255, 255, 255, .11);
+    border-radius: 24px;
+
+    padding: clamp(25px, 5vw, 45px);
+}
+
+.auth-card.login-card {
+    max-width: 480px;
+}
+
+
+/* ========================================
+   AUTH HEADER
+======================================== */
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-eyebrow {
+    color: #ff75ca;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.auth-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 42px;
+    margin: 0 0 12px;
+    color: #777080;
+}
+
+.auth-subtitle {
+    color: #aaa2b2;
+    line-height: 1.6;
+    margin: 0;
+}
+
+
+/* ========================================
+   FORM
+======================================== */
+
+.auth-form-group {
+    margin-bottom: 20px;
+}
+
+.auth-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #aaa2b2;
+}
+
+.auth-input,
+.auth-select,
+.auth-textarea {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 14px 16px;
+
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, .11);
+
+    background: #09060d;
+    color: white;
+
+    outline: none;
+    font-family: inherit;
+
+    transition: border-color .2s ease,
+        box-shadow .2s ease;
+}
+
+.auth-input:focus,
+.auth-select:focus,
+.auth-textarea:focus {
+    border-color: #a06aff;
+    box-shadow: 0 0 0 3px rgba(160, 106, 255, .12);
+}
+
+.auth-input::placeholder,
+.auth-textarea::placeholder {
+    color: #777080;
+}
+
+
+/* ========================================
+   SUBMIT BUTTON
+======================================== */
+
+.auth-submit {
+    width: 100%;
+
+    border: none;
+    cursor: pointer;
+
+    font-family: inherit;
+    font-size: 15px;
+}
+
+
+/* ========================================
+   LOGIN / SIGNUP LINK
+======================================== */
+
+.auth-switch {
+    text-align: center;
+
+    margin-top: 25px;
+
+    color: #aaa2b2;
+}
+
+.auth-switch-link {
+    color: #ff75ca;
+
+    text-decoration: none;
+    font-weight: 600;
+
+    margin-left: 5px;
+
+    transition: color .2s ease;
+}
+
+.auth-switch-link:hover {
+    color: #a06aff;
+}
+
+
+/* ========================================
+   ACCOUNT TYPE
+======================================== */
+
+.auth-role-section {
+    margin-bottom: 28px;
+}
+
+.auth-role-label {
+    display: block;
+
+    margin-bottom: 12px;
+color: #777080;
+    font-weight: 600;
+}
+
+.auth-role-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+}
+
+.auth-role-option {
+    display: block;
+    cursor: pointer;
+}
+
+.auth-role-input {
+    display: none;
+}
+
+.auth-role-card {
+    padding: 18px;
+
+    border: 1px solid rgba(255, 255, 255, .11);
+    border-radius: 14px;
+
+    background: #09060d;
+
+    text-align: center;
+
+    transition:
+        border-color .2s ease,
+        background .2s ease,
+        transform .2s ease;
+}
+
+.auth-role-card:hover {
+    transform: translateY(-2px);
+}
+
+.auth-role-icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.auth-role-description {
+    color: #aaa2b2;
+
+    font-size: 12px;
+    line-height: 1.5;
+
+    margin: 6px 0 0;
+}
+
+
+/* Selected role */
+
+.auth-role-input:checked+.auth-role-card {
+    border-color: #ff75ca;
+
+    background: rgba(160, 106, 255, .12);
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .auth-section {
+        padding: 35px 0;
+    }
+
+    .auth-title {
+        font-size: 36px;
+    }
+
+    .auth-role-grid {
+        grid-template-columns: 1fr;
+    }
+
+}

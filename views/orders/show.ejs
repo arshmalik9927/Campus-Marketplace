@@ -1,0 +1,211 @@
+<% layout("layouts/boilerplate") -%>
+
+<div class="container">
+
+    <section class="order-section">
+
+        <div class="order-success-header">
+
+            <div class="order-success-icon">
+                ✓
+            </div>
+
+            <p class="order-eyebrow">
+                ORDER CONFIRMED
+            </p>
+
+            <h1 class="order-title">
+                Thank you for your order!
+            </h1>
+
+            <p class="order-subtitle">
+                Your order has been placed successfully.
+            </p>
+
+        </div>
+
+
+        <!-- Order Information -->
+        <div class="order-info-card">
+
+            <div class="order-info-header">
+
+                <div>
+                    <p class="order-info-label">
+                        ORDER ID
+                    </p>
+
+                    <h2 class="order-id">
+                        #<%= order._id %>
+                    </h2>
+                </div>
+
+                <div class="order-status">
+                    <%= order.status %>
+                </div>
+
+            </div>
+
+
+            <div class="order-info-grid">
+
+                <div class="order-info-item">
+
+                    <span class="order-info-label">
+                        Order Date
+                    </span>
+
+                    <strong>
+                        <%= new Date(order.createdAt).toLocaleDateString("en-IN") %>
+                    </strong>
+
+                </div>
+
+
+                <div class="order-info-item">
+
+                    <span class="order-info-label">
+                        Total Amount
+                    </span>
+
+                    <strong>
+                        ₹<%= order.totalAmount.toLocaleString("en-IN") %>
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Delivery Address -->
+        <div class="order-card">
+
+            <div class="order-card-header">
+
+                <div>
+
+                    <p class="order-eyebrow">
+                        DELIVERY
+                    </p>
+
+                    <h2 class="order-card-title">
+                        Delivery Address
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <p class="order-address">
+                <%= order.deliveryAddress %>
+            </p>
+
+        </div>
+
+
+        <!-- Ordered Products -->
+        <div class="order-card">
+
+            <div class="order-card-header">
+
+                <div>
+
+                    <p class="order-eyebrow">
+                        YOUR ITEMS
+                    </p>
+
+                    <h2 class="order-card-title">
+                        Order Items
+                    </h2>
+
+                </div>
+
+                <span class="order-item-count">
+                    <%= order.items.length %>
+                    item<%= order.items.length !== 1 ? "s" : "" %>
+                </span>
+
+            </div>
+
+
+            <div class="order-items">
+
+                <% order.items.forEach(item => { %>
+
+                    <div class="order-item">
+
+                        <div class="order-item-info">
+
+                            <h3>
+                                <%= item.title %>
+                            </h3>
+
+                            <p>
+                                Quantity: <%= item.quantity %>
+                            </p>
+
+                        </div>
+
+
+                        <div class="order-item-price">
+
+                            <span>
+                                ₹<%= item.price.toLocaleString("en-IN") %>
+                                × <%= item.quantity %>
+                            </span>
+
+                            <strong>
+                                ₹<%= (
+                                    item.price * item.quantity
+                                ).toLocaleString("en-IN") %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                <% }) %>
+
+            </div>
+
+
+            <!-- Total -->
+            <div class="order-total">
+
+                <span>
+                    Total Amount
+                </span>
+
+                <strong>
+                    ₹<%= order.totalAmount.toLocaleString("en-IN") %>
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- Actions -->
+        <div class="order-actions">
+
+            <a
+                href="/orders"
+                class="btn-primary"
+            >
+                View My Orders
+            </a>
+
+            <a
+                href="/products"
+                class="btn-secondary"
+            >
+                Continue Shopping
+            </a>
+
+        </div>
+
+    </section>
+
+</div>
